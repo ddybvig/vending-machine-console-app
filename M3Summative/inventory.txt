@@ -1,5 +1,4 @@
 Water::0.40::0
-Coke::0.50::7
+Coke::0.50::5
 Root Beer::0.60::2
-Lemonade::0.70::9
-test::1.00::98
+Lemonade::0.70::8

@@ -16,14 +16,25 @@
           http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
     <!-- Bean definitions go here -->
+    <bean id="userIO" class="VendingMachineUI.UserIOConsoleImpl"/>
    
-   <bean id="vendingMachineDao" class="VendingMachineDao.VendingMachineDaoStubImpl"/>
+    <bean id="view" class="VendingMachineUI.VendingMachineView">
+        <constructor-arg ref="userIO"/>
+    </bean>
    
-   <bean id="auditDao" class="VendingMachineDao.VendingMachineAuditDaoFileImpl"/>
+    <bean id="vendingMachineDao" class="VendingMachineDao.VendingMachineDaoFileImpl"/>
+    
+    <bean id="auditDao" class="VendingMachineDao.VendingMachineAuditDaoFileImpl"/>
+    
+    <bean id="serviceLayer" class="VendingMachineService.VendingMachineServiceLayerImpl">
+        <constructor-arg ref="vendingMachineDao"/>
+        <constructor-arg ref="auditDao"/>
+    </bean>
+    
+    <bean id="controller" class="VendingMachineController.VendingMachineController">
+        <constructor-arg ref="serviceLayer"/>
+        <constructor-arg ref="view"/>
+    </bean>
    
-   <bean id="serviceLayer" class="VendingMachineService.VendingMachineServiceLayerImpl">
-       <constructor-arg ref="vendingMachineDao"/>
-       <constructor-arg ref="auditDao"/>
-   </bean>
    
 </beans>

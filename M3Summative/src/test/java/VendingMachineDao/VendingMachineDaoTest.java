@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class VendingMachineDaoTest {
 
-    private VendingMachineDao dao = new VendingMachineDaoFileImpl();
+    private VendingMachineDao dao = new VendingMachineDaoStubImpl();
 
     public VendingMachineDaoTest() {
     }
@@ -69,7 +69,7 @@ public class VendingMachineDaoTest {
      */
     @Test
     public void testUpdateInventory() throws Exception {
-        List<Item>items = dao.getAllItems();
+        List<Item> items = dao.getAllItems();
         Item testItem = dao.getItem("test");
         int quantityCheck = testItem.getQty()-1;
         dao.updateInventory("test");
